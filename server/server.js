@@ -18,14 +18,14 @@ io.on('connection', (socket) => {
   });
 
   socket.on('createMessage', function (message) {
-    console.log('Message: ', message);
+    console.log('createMessage: ', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
 
-  socket.emit('newMessage', {
-    to: 'me@ex.com',
-    text: 'Hi from the server',
-    createdAt: 999
-  })
 })
 
 server.listen(3000, () => {
