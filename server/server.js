@@ -25,13 +25,12 @@ io.on('connection', (socket) => {
     console.log('client disconnected!');
   });
 
-  socket.on('createMessage', function (message) {
+  socket.on('createMessage', function (message, callback) {
     console.log('createMessage: ', message);
 
-
-
     io.emit('newMessage', generateMessage(message.from, message.text));
-
+    if(callback)
+      callback('Good to go!');
     // socket.broadcast.emit('newMessage', {
     //   from: message.from,
     //   text: message.text,
