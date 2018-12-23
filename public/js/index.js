@@ -10,9 +10,9 @@ socket.on('disconnect', function () {
 
 socket.on('newMessage', function (message) {
   // console.log('New message: ', message);
-  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var formattedTime = moment(message.createdAt).format('MMMM Do YYYY, h:mm:ss a');
   var li = jQuery('<li></li>');
-  li.text(`${message.from} ${formattedTime}-->${message.text}`);
+  li.text(`${message.from} -->${message.text}(${formattedTime})`);
   jQuery('#messages').append(li);
 });
 
